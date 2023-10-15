@@ -20,6 +20,12 @@ class User implements UserInterface, \JsonSerializable, PasswordAuthenticatedUse
     #[ORM\Column(length: 180)]
     private string $password;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Company $company = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $profilePicture = null;
+
     /** @param array<string> $roles */
     public function __construct(
         #[ORM\Column(length: 180, unique: true)]
@@ -123,5 +129,29 @@ class User implements UserInterface, \JsonSerializable, PasswordAuthenticatedUse
             'email' => $this->getEmail(),
             'username' => $this->getUsername(),
         ];
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): static
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): static
+    {
+        $this->profilePicture = $profilePicture;
+
+        return $this;
     }
 }

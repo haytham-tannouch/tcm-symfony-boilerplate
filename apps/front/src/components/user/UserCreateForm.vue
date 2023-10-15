@@ -30,7 +30,7 @@ const registerUser = async () => {
     throw createError("You need a valid password");
   }
   try {
-    await createUser(email.value, securedPassword.value);
+    await createUser(email.value, securedPassword.value, profilePictureFile.value);
     await navigateTo("/users");
   } catch (e) {
     logger.info(e);

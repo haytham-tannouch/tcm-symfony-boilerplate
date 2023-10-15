@@ -3,6 +3,7 @@
     class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top"
   >
     <NuxtLink to="/users">Users</NuxtLink>
+    <NuxtLink to="/companies">Companies</NuxtLink>
     <NuxtLink to="/" class="d-block p-3 link-dark text-decoration-none">
       <Icon1Square />
     </NuxtLink>

@@ -5,7 +5,7 @@ import useBasicError from "~/composables/useBasicError";
 
 export default function useCreateUser(): {
   errorMessage: Readonly<Ref<string>>;
-  createUser(email: string, password: string): Promise<User | null>;
+  createUser(email: string, password: string, profilePictureFile: File|null): Promise<User | null>;
 } {
   const { $appFetch } = useNuxtApp();
 
@@ -13,7 +13,7 @@ export default function useCreateUser(): {
 
   return {
     errorMessage,
-    async createUser(email: string, password: string): Promise<User | null> {
+    async createUser(email: string, password: string, profilePictureFile: File|null): Promise<User | null> {
       try {
         resetError();
         const response = await $appFetch<User>("/users", {
@@ -21,6 +21,7 @@ export default function useCreateUser(): {
           body: {
             email,
             password,
+            profilePictureFile,
           },
         });
         if (!response) {
